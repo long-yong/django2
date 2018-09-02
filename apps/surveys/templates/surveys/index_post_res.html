@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'surveys/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'surveys/css/style.css' %}" >
+        <script src= "{% static 'surveys/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','red');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id="header">
+            Thanks for submittion this form! You have submitted form for {{ request.session.post_counter }} times now.
+    </div>
+    <div id="footer">
+        <form action="/surveys/index_res_back" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+                <br><br>
+
+                <div>Your name:</div>
+                <div>{{ request.session.name }}</div>
+                <br> <br>
+
+                <div>Dojo Location:</div>
+                <div>{{ request.session.location }}</div>
+                <br> <br>
+
+                <div>Favorite Language:</div>
+                <div>{{ request.session.lang }}</div>
+                <br><br>
+                <div>Comment:</div>
+                <div id="comment2">{{ request.session.comment }}</div> <a id="smile">...&nbsp;&nbsp;:)</a>
+                <br><br>
+                <input id='goback' type="submit" value="Go Back">
+        </form>
+
+        <script>
+        $(document).ready(function(){
+            if($('#comment2').html().length > 15) $('#smile').show();
+        });
+        </script>
+
+    </body>
+  </html>

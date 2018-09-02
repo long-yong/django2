@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'wall/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'wall/css/style.css' %}" >
+        <script src= "{% static 'wall/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','red');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id = "container">
+
+        <form action="/wall/index" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere #}
+
+            <h3>Notice: </h3>
+            {% for message in messages %}
+                <li> {{ message }} </li>
+            {% endfor %}
+
+            <br><br><h3>Registers: </h3>
+            <ul class="slide">
+                {% for rcd in all_register %}
+                <li>{{ rcd.first_name }} {{ rcd.last_name }} </li>
+                {% endfor %}
+            </ul>
+
+            <br><br> <button type="submit">Go Back</button>  <br> <br>
+        </form>
+
+    </div>
+    </body>
+  </html>

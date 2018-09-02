@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'trip0/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'trip0/css/style2.css' %}" >
+        <script src= "{% static 'trip0/js/me.js' %}" ></script>
+        <script>
+            function click_post(n1, n2) {
+                var route = '/trip0/job_plan_/' + n1 + '/' + n2;
+                document.getElementById('form').action = route;
+                document.getElementById('form').submit();
+            }
+        </script>
+    </head>
+
+
+    <body> <div id="container"> <form id="form" action="" method="post"> {% csrf_token %}
+        <h2 class="title">Welcome {{ request.session.me_name }}</h2> <div class="spacem"></div>
+
+        <button class='row1' onclick="click_post(1,0)">Add job</button> <div class="space3"></div>
+        <button class='row1' onclick="click_post(2,0)">Back</button> <div class="space3"></div>
+        <button class='row1' onclick="click_post(3,0)">Logout</button>
+
+        <h2>{{ request.session.me_name }}'s trip schedule: </h2>
+        <div class ='slide'>
+            <table border=1 rules=cols>
+                <tr>
+                    <th>Description</th>
+                    <th>Travel start date</th>
+                    <th>Travel end date</th>
+                    <th>Plan</th>
+                    <th>Action</th>
+                </tr>
+                {% for trip in my_trips %}
+                    <tr>
+                        <td> <p class='btn1' onclick='click_post(4,{{trip.id}})'>{{ trip.desc }}</p></td>
+                        <td>{{ trip.date_from }}</td>
+                        <td>{{ trip.date_to }}</td>
+                        <td>{{ trip.destination }}</td>
+                        <td><button class='btn2' onclick='click_post(5,{{trip.id}})'>Delete</button></td>
+                    </tr>
+                {% endfor %}
+                {% for trip in my_tripss %}
+                    <tr>
+                        <td> <p class='btn1' onclick='click_post(4,{{trip.id}})'>{{ trip.desc }}</p></td>
+                        <td>{{ trip.date_from }}</td>
+                        <td>{{ trip.date_to }}</td>
+                        <td>{{ trip.destination }}</td>
+                        <td><button class='btn2' onclick='click_post(6,{{trip.id}})'>Cancel</button></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <h2>Other's travel plans: </h2>
+        <div class ='slide'>
+            <table border=1 rules=cols>
+                <tr>
+                    <th>Description</th>
+                    <th>Travel start date</th>
+                    <th>Travel end date</th>
+                    <th>You want to join?</th>
+                </tr>
+                {% for trip in all_trips %}
+                    {% if trip not in my_trips and trip not in my_tripss %}
+                    <tr>
+                        <td> <p class='btn1' onclick='click_post(4,{{trip.id}})'>{{trip.destination}}</p></td>
+                        <td>{{ trip.date_from }}</td>
+                        <td>{{ trip.date_to }}</td>
+                        <td><button class='btn2' onclick='click_post(7,{{trip.id}})'>Join</button></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+    </form> </div> </body>
+  </html>

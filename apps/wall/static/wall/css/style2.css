@@ -1,0 +1,79 @@
+        * {
+            margin:0px;
+            padding:0px;
+            vertical-align: top;
+            font-size: 12px;
+        }
+        #container {
+            width: 410px;
+            height: 500px;
+            margin: 20px;
+            border: 1px solid black;
+            padding: 10px 30px 10px 30px;
+        }
+        #leftbox {
+            width: 310px;
+            height:500px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        #rightbox {
+            width: 250px;
+            height:500px;
+            display: inline-block;
+        }
+
+        button {
+            width:75px;
+            height:20px;
+            font-size:8px;
+        }
+
+        .blue {
+            background-color: lightblue;
+        }
+
+        .green {
+            background-color: lightgreen;
+        }
+
+        .slide {
+            width: 450px;
+            height:100px;
+            margin-top:15px;
+            overflow-y:scroll;
+        }
+        textarea {
+            width:300px;
+            height: 40px;
+            margin-bottom: 8px;
+        }
+        .t1 {
+            margin-top: 10px;
+            margin-left: 0px;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .t2 {
+            margin-top: 5px;
+            margin-left: 15px;
+            font-weight: normal;
+            font-size: 10px;
+        }
+        .t3 {
+            margin-top: 8px;
+            margin-left: 15px;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .t4 {
+            margin-top: 5px;
+            margin-left: 15px;
+            font-weight: normal;
+            font-size: 10px;
+        }
+        h4 {
+            margin-top:5px;
+        }
+
+

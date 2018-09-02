@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'surveys/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'surveys/css/style.css' %}" >
+        <script src= "{% static 'surveys/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','blue');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id="container">
+
+        <form id="form1" action="/surveys/index_post" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+                <br><br>
+
+                <div>Your name:</div>
+                <div>
+                    <input type="text" id="name" name="name" value="{{ request.session.name }}">
+                </div> <br> <br>
+
+                <div>Dojo Location:</div>
+                <div>
+                    <select id="location" name="location" form="form1">
+                        <option value='Seattle'>Seattle</option>
+                        <option value='San Jose'>San Jose</option>
+                        <option value='NOVA'>NOVA</option>
+                    </select>
+                </div> <br> <br>
+
+                <div>Favorite Language:</div>
+                <div>
+                    <select id="lang" name="lang" form="form1">
+                        <option value='English'>English</option>
+                        <option value='French'>French</option>
+                        <option value='Chinese'>Chinese</option>
+                        <option value='German'>German</option>
+                    </select>
+                </div> <br> <br>
+
+                <div>Comment (option):</div>  <br>
+                <textarea id="comment" name="comment">{{ request.session.comment }}</textarea><br><br>
+                <input id='submit' type="submit">
+
+        </form>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#location option[value="{{request.session.location}}"]').attr("selected", "selected");
+            $('#lang option[value="{{request.session.lang }}"]').attr("selected", "selected");
+        });
+    </script>
+
+    </body>
+  </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Ajax Demo</title>
+      {% load static %} <link rel= "stylesheet" href="{% static 'ajax/css/style.css' %}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function click_post(n1) {
+            if(n1==1||n1==2) {
+                document.getElementById('form').action = '/ajax/demo1_/' + n1;
+                document.getElementById('form').submit();
+            }
+            if(n1==3) { $.ajax({ url: '/ajax/demo1_/3',
+                      success: function(serverResponse)
+                      { $('#placeholder').html(JSON.stringify(serverResponse)) }  });
+            }
+            if(n1==4) { $.ajax({ url: '/ajax/demo1_/4',
+                      success: function(serverResponse)
+                      { $('#placeholder').html(serverResponse) } });
+            }
+        }
+    </script>
+  </head>
+
+  <body>
+    <form id='form' action="" method="post"> {% csrf_token %} <br>
+        <button class='row11' onclick="click_post(1)">Back</button>
+        <button class='row12' onclick="click_post(2)">Next</button>
+        <h2>Demo 1 - json vs html</h2>
+    </form>
+
+    <button class='btn1' onclick='click_post(3)'>Fetch HttpResponse from json</button>
+    <button class='btn1' onclick='click_post(4)'>Fetch HttpResponse from html</button>
+    <div id='placeholder'> Placeholder for the Ajax Response</div>
+  </body>
+</html>

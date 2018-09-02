@@ -1,0 +1,10 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/django2
+ExecStart=/home/ubuntu/django2/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/django2/django2.sock django2.wsgi:application
+[Install]
+WantedBy=multi-user.target

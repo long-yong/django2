@@ -1,0 +1,161 @@
+
+  --- AWS Cloud EC2 + Ubuntu 16.04 (free tier)  ---
+
+Create Instance -> review Instance -> Edit Security Groups -> 
+(SSH:MyIP) add rules -> HTTP (anywhere) -> HTTPS (anywhere) 
+-> Launch -> Create/Select Key Pair -> Review Instance
+
+(public DNS) ec2-18-220-104-199.us-east-2.compute.amazonaws.com
+(public ID) 18.220.104.199
+(name) django2
+
+  ----  project & github   -----
+	
+  pip freeze > requirements.txt
+  .gitignore  *.pyc venv/
+
+  git init
+  git add --all
+  git commit -m "initial commit"
+  git remote add origin https://github.com/long-yong/django2.git
+  git push origin master
+
+
+  --- Django Deploy  ---
+
+  Edit .ssh/config (related key pair file id_rsa)
+  Host           aws-djang2
+  HostName       ec2-18-220-104-199.us-east-2.compute.amazonaws.com
+  IdentityFile   ~/.ssh/id_rsa
+  User           ubuntu
+
+  $ ssh aws-django2
+
+  $ sudo apt-get update
+
+  $ sudo apt-get install python-pip python-dev nginx git.
+
+  $ sudo apt-get update
+
+  $ sudo pip install virtualenv
+
+  $ git clone https://github.com/long-yong/django2.git
+
+
+  ~/myRepoName$ virtualenv venv --python=python3
+
+  ~/myRepoName$ source venv/bin/activate
+
+  (venv)~/myRepoName$ pip install -r requirements.txt
+
+  (venv)~/myRepoName$ pip install django bcrypt django-extensions
+
+  (venv)~/myRepoName$ pip install gunicorn
+
+Vim
+ (venv) ~/myRepoName$ cd {{projectName}}
+ (venv) ~/myRepoName/projectName$ sudo vim settings.py
+
+edit settings.py:
+
+DEBUG = False
+ALLOWED_HOSTS = ['{{yourEC2.public.ip}}']
+# add the line below to the bottom of the file
+STATIC_ROOT = os.path.join(BASE_DIR, "static/"
+
+
+# Say 'yes' to the dialogue box after typing this next command:
+
+ (venv) ~myRepoName$ python manage.py collectstatic
+
+ (venv) ~myRepoName$ gunicorn --bind 0.0.0.0:8000 {{projectName}}.wsgi:application
+
+0 static files copied to '/home/ubuntu/django2/static', 123 unmodified.
+(venv) ubuntu@ip-172-31-17-230:~/django2$ gunicorn --bind 0.0.0.0:8000 django2.wsgi:application
+[2018-08-22 21:19:54 +0000] [18596] [INFO] Starting gunicorn 19.9.0
+[2018-08-22 21:19:54 +0000] [18596] [INFO] Listening at: http://0.0.0.0:8000 (18596)
+[2018-08-22 21:19:54 +0000] [18596] [INFO] Using worker: sync
+[2018-08-22 21:19:54 +0000] [18599] [INFO] Booting worker with pid: 18599
+
+to exit gunicorn process: ctrl-c
+
+ 
+ ~myRepoName$ sudo vim /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/{{repoName}}
+ExecStart=/home/ubuntu/{{repoName}}/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/{{repoName}}/{{projectName}}.sock {{projectName}}.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+:qw
+
+
+Quit virtual environment:
+
+ ~myRepoName$ cd
+
+ ~$ deactivate
+
+Continue:
+
+ $ sudo systemctl daemon-reload
+ $ sudo systemctl start gunicorn
+ $ sudo systemctl enable gunicorn 
+
+Step 9 - Finally:
+We will remove the Nginx default site display from directory sites-enabled, 
+by running the following in your terminal.
+
+ $ sudo rm /etc/nginx/sites-enabled/default
+
+Now, all that is left to do is restart your Nginx server.
+
+ $ sudo service nginx restart
+ $ sudo systemctl enable gunicorn
+
+
+One final file to edit:
+
+ $ sudo vim /etc/nginx/sites-available/{{projectName}}
+
+server {
+  listen 80;
+  server_name {{yourEC2.public.ip}};
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/{{myRepoName}};
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/{{myRepoName}}/{{projectName}}.sock;
+  }
+}
+
+Save and exit.
+
+Now in the terminal, run the following (taking note of the space after {{projectName}}):
+
+  ~$ sudo ln -s /etc/nginx/sites-available/{{projectName}} /etc/nginx/sites-enabled
+  ~$ sudo nginx -t
+
+on screen: 
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+Step 9 - Finally:
+
+ ~$ sudo rm /etc/nginx/sites-enabled/default
+ ~$ sudo service nginx restart
+
+Go to Browser input AWS ip address: 18.220.104.199  will see Login website
+
+
+
+
+

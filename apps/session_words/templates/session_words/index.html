@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'session_words/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'session_words/css/style.css' %}" >
+        <script src= "{% static 'session_words/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                {% if request.session.checkbox == 'on' %}
+                    $("[name='checkbox']").attr("checked",'true');
+                {% endif %}
+                $("[name='color'][value='{{ request.session.color }}']").attr("checked",true);
+                str = '';
+                {% for dict in request.session.dicts %}
+                    str = "<div class='datetxt'>added on {{ dict.posttime }}</div>" + str;
+                    str = "<div class='colortxt' style='color:{{ dict.color }}; font-size:{{dict.checkbox}}px'>{{ dict.word }}</div>" + str;
+                {% endfor %}
+                $("#txtbox").html(str);
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id="container">
+
+        <form id="left" action="/session_words/index_post" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+            <h3>Add a new word</h3>
+            <input id="word" name="word" value="{{ request.session.word }}" /><br> <br>
+            <p>Choose color</p>
+            <div id="radio">
+                <input type="radio" name="color" value="red">&nbsp;Red<br><br>
+                <input type="radio" name="color" value="green">&nbsp;Green<br><br>
+                <input type="radio" name="color" value="blue">&nbsp;Blue<br><br>
+            </div>
+            <input id="checkbox" type="checkbox" name="checkbox">&nbsp;show in BIG font<br>
+			<button id="submit1" type="submit" name="submit">Add to Session</button>
+
+            <br><br><br></br>Post_counter {{ request.session.post_counter }}
+
+        </form>
+
+        <form id="right" action="/session_words/index_clear" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+			<button id="submit2" type="submit" name="submit">Clear Session</button>
+
+            <div id="txtbox"> </div>
+        </form>
+
+    </div>
+    </body>
+  </html>

@@ -1,0 +1,178 @@
+        * {
+            vertical-align: top;
+            font-size: 12px;
+        }
+        #container {
+            width: 600px;
+            height: 450px;
+            margin: 20px;
+            border: 1px solid black;
+            padding-left: 20px;
+        }
+        #leftbox {
+            width: 310px;
+            height:450px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        #rightbox {
+            width: 250px;
+            height:450px;
+            display: inline-block;
+        }
+        .noborder {
+            border: 0;
+        }
+        .underline {
+            text-decoration:underline;
+        }
+        .space3 {
+            width: 3px;
+            height: 10px;
+            display: inline-block;
+        }
+        .space5 {
+            width: 5px;
+            height: 10px;
+            display: inline-block;
+        }
+         .space10 {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spaces {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spacem {
+            width: 50px;
+            height: 10px;
+            display: inline-block;
+        }
+         .spaceb {
+            width: 100px;
+            height: 10px;
+            display: inline-block;
+        }
+         .space_add {
+            width: 65px;
+            height: 10px;
+            display: inline-block;
+        }
+        .title {
+            display: inline-block;
+            margin-top: 0px;
+            margin-bottom: 15px;
+        }
+        .tit {
+            width:65px;
+            height: 16px;
+            display:inline-block;
+        }
+        .row1 {
+            display: inline-block;
+        }
+        .row2 {
+            width: 80px;
+            height: 20px;
+            font-size:12px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        input {
+            width:300px;
+        }
+        button{
+            width:50px;
+            height:16px;
+            font-size:10px;
+        }
+        .btn1 {
+            height:16px;
+            font-size:10px;
+            margin:1px 5px 1px 5px;
+            border: none;
+            background-color: white;
+            text-decoration:underline;
+        }
+        .btn2 {
+            width:50px;
+            height:16px;
+            font-size:10px;
+            margin:1px 5px 1px 5px;
+        }
+
+
+        form {
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+        table {
+            border-collapse:collapse;
+            border: 1px solid black;
+            cellspacing: 0px;
+            line-height: 12px;
+            align:left;
+        }
+        .table {
+            border-collapse:collapse;
+            border: 0px solid black;
+            cellspacing: 0px;
+            line-height: 12px;
+            align:left;
+        }
+        th{
+            width:85px;
+            font-size: 10px;
+            line-height: 16px;
+        }
+        td{
+            font-size: 10px;
+            line-height: 16px;
+            text-align: left;
+            padding-left: 5px;
+            padding-right: 5px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+        .slide {
+            width: 580px;
+            height:153px;
+            margin-top:10px;
+            overflow-y:scroll;
+        }
+         .red {
+            color:red;
+        }
+        h2 {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        h3 {
+        }
+        h4 {
+        }
+        a {
+            width:80px;
+            height:16px;
+        }
+        p {
+            display:inline-block;
+        }
+         .p1 {
+             width:130px;
+             height:20px;
+             font-size:14px;
+             text-decoration:underline;
+             font-weight: bold;
+        }
+         .merge {
+             padding-left: 10px;
+             text-align: left;
+             border-bottom: 1px solid black;
+         }

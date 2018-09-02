@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'app1/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'app1/css/style.css' %}" >
+        <script src= "{% static 'app1/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','red');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id = "container">
+
+        <form action="" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+            <br>
+            <h3>blogs post result {{ request.session.post_counter }} times</h3>
+
+            <br>
+            <p>Your name is &nbsp;&nbsp;{{ request.session.name }}</p> <br>
+
+            <br>
+            <p>Your description is &nbsp;&nbsp;{{ request.session.desc }}</p>
+
+            <br>
+            <br>
+
+        </form>
+
+    </div>
+    </body>
+  </html>

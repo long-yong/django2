@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       {% load static %}
+        <link rel="shortcut icon" href="{% static 'wall/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'wall/css/style.css' %}" >
+        <script src= "{% static 'wall/js/me.js' %}" ></script>
+
+        <script>
+        $(document).ready(function() {
+        });
+    </script>
+
+    </head>
+
+    <body>
+    <body>
+    <div id='container'>
+        <div id="leftbox">
+           <form id='form1' action='/wall/register_post' method='post'>
+               {% csrf_token %}
+                <h3>Log and Registration</h3>
+                <h4>Register here</h4>
+                <table>
+                    <tr> <td>First_name</td> </tr>
+                    <tr> <td> <input type='text' id="first_name" name="first_name" value="{{ request.session.first_name }}"></td> </tr>
+
+                    <tr> <td>Last_name</td> </tr>
+                    <tr> <td> <input type='text' id="last_name" name="last_name" value="{{ request.session.last_name }}"></td> </tr>
+
+                    <tr> <td>Email</td> </tr>
+                    <tr> <td> <input type='text' id="email" name="email" value="{{ request.session.email }}"></td> </tr>
+
+                    <tr> <td>Password</td> </tr>
+                    <tr> <td> <input type='password' id="pwd" name="pwd" value="{{ request.session.pwd }}"></td> </tr>
+
+                    <tr> <td>Confirm password</td> </tr>
+                    <tr> <td> <input type='password' id="confirm" name="confirm" value="{{ request.session.confirm }}"></td> </tr>
+                </table>
+
+               <br> <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div id="rightbox">
+            <form id='form2' action='/wall/login_post' method='post'>
+                {% csrf_token %}
+                <h3></h3>
+                <h4>Login here</h4>
+                Email: <br>
+                <input type='text' id="log_email" name="log_email" value="{{ request.session.log_email }}"/> <br><br>
+                Password: <br>
+                <input type='password' id="log_pwd" name="log_pwd" value="{{ request.session.log_pwd }}"/><br>
+                <br> <button type="submit">Submit</button>  <br> <br>
+            </form>
+        </div>
+    </div>
+</body>
+  </html>

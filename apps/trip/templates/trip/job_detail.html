@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'trip/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'trip/css/style2.css' %}" >
+        <script src= "{% static 'trip/js/me.js' %}" ></script>
+        <script>
+           function click_post(n1) {
+                var route = '/trip/job_detail_/' + n1;
+                document.getElementById('form').action = route;
+                document.getElementById('form').submit();
+            }
+        </script>
+    </head>
+
+
+    <body> <div id="container"> <form id="form" action="" method="post"> {% csrf_token %}
+            <div class="spaceb"></div> <div class="spacem"></div>
+
+            <button class='row1' onclick="click_post(1)">Back</button> <div class="space3"></div>
+            <button class='row1' onclick="click_post(2)">Logout</button><br><br>
+
+            <h2>{{ this_trip.title }}</h2><br>
+            <div class ='slide'>
+                &nbsp;&nbsp;Description:&nbsp;&nbsp;{{ this_trip.desc }} <br><br>
+
+                &nbsp;&nbsp;Location:&nbsp;&nbsp;{{ this_trip.location }} <br><br>
+
+                &nbsp;&nbsp;Posted By:&nbsp;&nbsp;{{ this_trip.planner.first_name }}&nbsp{{ this_trip.planner.last_name }} <br><br>
+
+                &nbsp;&nbsp;Posted On:&nbsp;&nbsp;{{ this_trip.planner.created_at }}<br><br>
+            </div>
+
+{#            <button class='row1' onclick="click_post(3)">Add</button><br><br>#}
+
+            <p class='p1' onclick="click_post(3)">&nbsp;Add To My Jobs&nbsp;</p><br><br>
+
+    </form> </div> </body>
+  </html>

@@ -1,0 +1,29 @@
+<html>
+<head>
+    {% load static %} <link rel= "stylesheet" href="{% static 'ajax/css/style.css' %}" >
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function click_post(n1) {
+            document.getElementById('form').action = '/ajax/ajax_/' + n1;
+            document.getElementById('form').submit();
+        }
+        $(document).ready(function() {
+            $('#name').keyup(function() {
+                $.ajax({ method: "POST", url: "/ajax/ajax_/3",  data: $('#form').serialize() })
+                .done(function( response ) {  $('#placeholder').html(response); });
+            });
+        });
+    </script>
+</head>
+
+<body><form action='' id='form' method='post'>{% csrf_token %}<br>
+    <button class='row11' onclick="click_post(1)">Back</button>
+    <button class='row12' onclick="click_post(2)">Next</button>
+    <h2>Ajax name</h2>
+
+    <br>Find all users whose name starts with:&nbsp; <input type='text' id='name' name='name' value=''><br>
+
+    <br> <div id='placeholder'></div>
+
+</form></body>
+</html>

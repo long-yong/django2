@@ -1,0 +1,96 @@
+        * {
+            vertical-align: top;
+            font-size: 12px;
+        }
+        #container {
+            width: 600px;
+            height: 450px;
+            margin: 20px;
+            border: 1px solid black;
+            padding-left: 20px;
+        }
+        #leftbox {
+            width: 310px;
+            height:500px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        #rightbox {
+            width: 250px;
+            height:500px;
+            display: inline-block;
+        }
+        .slide {
+            width: 450px;
+            height:120px;
+            margin-top:15px;
+            overflow-y:scroll;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .inline {
+            display: inline-block;
+        }
+         .space3 {
+            width: 3px;
+            height: 10px;
+            display: inline-block;
+        }
+        .space5 {
+            width: 5px;
+            height: 10px;
+            display: inline-block;
+        }
+         .space10 {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spaces {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spacem {
+            width: 50px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spaceb {
+            width: 100px;
+            height: 10px;
+            display: inline-block;
+        }
+        .spacex {
+            width: 100px;
+            height: 10px;
+            display: inline-block;
+        }
+        input {
+            margin-bottom: 6px;
+            width: 230px;
+            font-size: 10px;
+            display: inline-block;
+        }
+        button {
+            width:70px;
+            height:18px;
+            font-size:10px;
+        }
+        t30 {
+            font-size: 15px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        t31 {
+            margin: 20px 10px 10px 0px;
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+        }
+
+
+
+
+

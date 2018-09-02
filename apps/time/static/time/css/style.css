@@ -1,0 +1,38 @@
+* {
+    margin:0px;
+    padding:0px;
+    vertical-align: top;
+}
+
+#container {
+    width: 600px;
+    height: 350px;
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.midtxt {
+    margin:0 auto;
+}
+
+#title {
+    width: 200px;
+    height: 28px;
+    margin:0 auto;
+    padding-top:10px;
+    font-size: 12px;
+    border: 1px solid black;
+}
+
+.clock {
+    width: 320px;
+    height: 90px;
+    font-size: 20px;
+    margin:0 auto;
+    border: 1px solid black;
+}
+
+div {
+    margin-top:10px;
+}

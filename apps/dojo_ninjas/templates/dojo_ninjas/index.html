@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'dojo_ninjas/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'dojo_ninjas/css/style.css' %}" >
+        <script src= "{% static 'dojo_ninjas/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','blue');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id="container">
+
+        <form action="/dojo_ninjas/index_post" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#} <br>
+
+            Dojo info:
+            <br>
+
+                {{ request.session.info1 }}
+
+            <br> <br>
+            Ninjas info:
+            <br>
+                {{ request.session.info2 }}
+
+            <br> <br>
+
+            <br> <button id="submit" type="submit" name="submit">Get Info</button>
+
+        </form>
+
+    </div>
+    </body>
+  </html>

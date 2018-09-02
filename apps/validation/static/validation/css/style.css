@@ -1,0 +1,42 @@
+
+* {
+    margin:0px;
+    padding:0px;
+    vertical-align: top;
+}
+
+#container {
+    background-color: white;
+    width: 400px;
+    height: 500px;
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.midone {
+    background-color: grey;
+    width: 200px;
+    height: 50px;
+    margin:0 auto;
+    display: block;
+}
+
+.midmany {
+    background-color: silver;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+#submit {
+    width:65px;
+    height:25px;
+}
+
+.left {
+    text-align: left;
+    margin-left: 50px;
+}
+

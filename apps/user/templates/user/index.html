@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'user/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'user/css/style.css' %}" >
+        <script src= "{% static 'user/js/me.js' %}" ></script>
+        <script>
+
+        </script>
+    </head>
+
+    <body>
+    <div id="container">
+
+        <form action="/user/index_post" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#} <br>
+
+            <h4>Db info:</h4> <br>
+
+            <ul> <br>User<br>
+            {% for rcd in all_user %}
+                <li>{{ rcd.first_name }}&nbsp;&nbsp; {{ rcd.last_name }}</li>
+            {% endfor %}
+            </ul>
+
+            <ul><br>Message<br>
+            {% for rcd in all_message %}
+                <li>{{ rcd.message }}</li>
+            {% endfor %}
+            </ul>
+
+            <ul><br>Comment<br>
+            {% for rcd in all_comment %}
+                <li>{{ rcd.comment }}</li>
+            {% endfor %}
+            </ul>
+
+            <br><br> <button id="submit" type="submit" name="submit">Get Info</button>
+
+        </form>
+
+    </div>
+    </body>
+  </html>

@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name 18.220.104.199;
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+      root /home/ubuntu/django2;
+  }
+  location / {
+      include proxy_params;
+      proxy_pass http://unix:/home/ubuntu/django2/django2.sock;
+  }
+}

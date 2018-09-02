@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'books/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'books/css/style.css' %}" >
+        <script src= "{% static 'books/js/me.js' %}" ></script>
+        <script>
+            $(document).ready(function () {
+                $('#who').click(function () { });
+                $('#title').css('color','blue');
+            });
+        </script>
+    </head>
+
+    <body>
+    <div id="container">
+
+        <form action="/books/index_post" method="post">
+
+            {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#}
+
+            <h3>Author List</h3> <br>
+            <ul>
+                {% for author in authors %}
+                    <li><h4>{{author.name}}</h4>
+                    <ul>
+                        {% for book in author.books.all %}
+                            <li><em>{{book.title}}</em></li>
+                        {% endfor %}
+                    </ul>
+                </li><br>
+                {% endfor %}
+            </ul>
+            <button id="submit" type="submit" name="submit">Add Book</button>
+
+        </form>
+
+    </div>
+    </body>
+  </html>

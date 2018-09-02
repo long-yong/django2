@@ -1,0 +1,29 @@
+
+* {
+    margin:0px;
+    padding:0px;
+    vertical-align: top;
+}
+
+#container {
+    background-color: white;
+    width: 400px;
+    height: 270px;
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#panel {
+    width:250px;
+    height:40px;
+    line-height: 40px;
+    border: 1px solid black;
+    margin: 0 auto;
+    font-size: 25px;
+}
+
+button {
+    width: 70px;
+    height:25px;
+}

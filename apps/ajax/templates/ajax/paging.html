@@ -1,0 +1,52 @@
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel= "stylesheet" href="{% static 'ajax/css/style.css' %}" >
+    <script>
+        function click_post(n1) {
+            document.getElementById('form').action = '/ajax/paging_/' + n1;
+            document.getElementById('form').submit();
+        }
+        $(document).ready(function() {
+            function submitAjaxForm(n1) {
+                $.ajax({
+                    method: "POST",
+                    url: "/ajax/paging_/" + n1,
+                    data: $('#form').serialize(),
+                    success: function(resp){ $('#placeholder').html(resp); }
+                });
+            }
+            $('input[name=name]').keyup(function() { submitAjaxForm(3); });
+            $('input[name=date_from], input[name=date_to]').keyup(function() { submitAjaxForm(3); });
+
+            $('a').click(function() {
+                $('input[name=page_number]').val( $(this).attr('data-value') );
+                submitAjaxForm(4);
+                return false;  //do this so that it actually doesn't go to that link
+            });
+        });
+    </script>
+</head>
+
+<body> <form id='form' action="" method='post'> {% csrf_token %} <br>
+    <button class='row11' onclick="click_post(1)">Back</button>
+    <button class='row12' onclick="click_post(2)">Next</button>
+    <h2>Paging name and date</h2><br>
+
+    <a href="#" data-value='1'>Page 1</a>&nbsp;
+    <a href="#" data-value='2'>Page 2</a>&nbsp;
+    <a href="#" data-value='3'>Page 3</a>&nbsp;
+    <a href="#" data-value='4'>Page 4</a>&nbsp;
+
+    <br><br><br>
+    Name: <input type='text' name='name'>
+    Date From: <input type='text' name='date_from'>
+    Date To: <input type='text' name='date_to'>
+    <input type='hidden' name='page_number' value='1'>
+    <button class='row1' onclick="click_post(4)">Submit</button>
+
+    <div id='placeholder'></div>
+
+ </form></body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'trip/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'trip/css/style2.css' %}" >
+        <script src= "{% static 'trip/js/me.js' %}" ></script>
+        <script>
+            function click_post(n1, n2) {
+                var route = '/trip/job_plan_/' + n1 + '/' + n2;
+                document.getElementById('form').action = route;
+                document.getElementById('form').submit();
+            }
+        </script>
+    </head>
+
+    <body> <div id="container"> <form id="form" action="" method="post"> {% csrf_token %}
+        <h2 class="title">Welcome {{ request.session.me_name }}</h2> <div class="spaces"></div>
+         <button class='row1' onclick="click_post(1,0)">Logout</button> <br><br>
+
+        <div class ='slide'>
+            <table border=1 rules=cols>
+                <tr>
+                    <th class='merge' colspan="3">All Jobs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                </tr>
+                {% for trip in my_trips %}
+                    <tr>
+                        <td>{{ trip.title }}</td>
+                        <td>{{ trip.location }}</td>
+                        <td class="row3">
+                            <a class='btn1' onclick='click_post(3,{{trip.id}})'>View</a>
+                            <a class='btn1' onclick='click_post(4,{{trip.id}})'>Add</a>
+                            <a class='btn1' onclick='click_post(5,{{trip.id}})'>Edit</a>
+                            <a class='btn1' onclick='click_post(6,{{trip.id}})'>Cancel</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% for trip in other_trips %}
+                    <tr>
+                        <td>{{ trip.title }}</td>
+                        <td>{{ trip.location }}</td>
+                        <td>
+                            <a class='btn1' onclick='click_post(3,{{trip.id}})'>View</a>
+                            <a class='btn1' onclick='click_post(4,{{trip.id}})'>Add</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br><button class='row2' onclick="click_post(2,0)">Add a job</button>
+        <div class ='slide'>
+            <table border=1 rules=cols>
+                <tr>
+                    <th class='merge' colspan="2">My Jobs</th>
+                </tr>
+                {% for trip in my_tripss %}
+                    <tr>
+                        <td>{{ trip.title }}</td>
+                        <td >
+                            <a class='btn1' onclick='click_post(3,{{trip.id}})'>View</a>
+                            <a class='btn1' onclick='click_post(7,{{trip.id}})'>Done</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </form> </div> </body>
+  </html>

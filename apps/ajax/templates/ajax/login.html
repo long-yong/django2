@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       {% load static %} <link rel= "stylesheet" href="{% static 'ajax/css/style.css' %}" >
+
+         <script>
+             function click_post(n1) {
+                 document.getElementById('form').action = '/ajax/login_/' + n1;
+                 document.getElementById('form').submit();
+            }
+        </script>
+
+    </head>
+
+    <body> <form id='form' action='' method='post'> {% csrf_token %} <br>
+                <button class='row11' onclick="click_post(1)">Back</button>
+                <button class='row12' onclick="click_post(2)">Next</button>
+                <h2>Login register</h2>
+                <table>
+                    <tr> <td>First_name</td>  <td> <input class='input1' type='text' id="first_name" name="first_name" value="{{ request.session.first_name }}"></td> </tr>
+
+                    <tr> <td>Last_name</td> <td> <input class='input1' type='text' id="last_name" name="last_name" value="{{ request.session.last_name }}"></td> </tr>
+
+                    <tr> <td>Email</td>  <td> <input class='input1' type='text' id="email" name="email" value="{{ request.session.email }}"></td> </tr>
+
+                    <tr> <td>Age</td> <td> <input class='input1' type='text' id="age" name="age" value="{{ request.session.age }}"></td> </tr>
+
+                </table>
+               <br> <button onclick='click_post(3)'>Submit</button>
+          </form>
+
+            <br><br><br><br>
+            {% for message in messages %}
+                <li class="red"> {{ message }} </li>
+            {% endfor %}
+
+    </body>
+  </html>

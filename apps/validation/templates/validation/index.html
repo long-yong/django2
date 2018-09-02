@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+      {% load static %}
+        <link rel="shortcut icon" href="{% static 'validation/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'validation/css/style.css' %}" >
+        <script src= "{% static 'validation/js/me.js' %}" ></script>
+    </head>
+
+    <body>
+    <div id="container">
+    <form action="/validation/index_post" method="post">
+
+        {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#} <br>
+
+        <p id="title"> Please change validation 5 place (img/css/js...) <p> <br> <br>
+
+        <label for="name">Blog Name:</label> <input type="text" id="name" name="name" placeholder="blog name" value="{{ request.session.name }}"> <br><br>
+
+        <label for="desc">Description:</label> <textarea id="desc" name="desc" placeholder="description">{{ request.session.desc }}</textarea> <br> <br>
+
+        <button type="submit">&nbsp;Submit&nbsp;</button>
+    </form>
+
+        <br>
+        <div class="left">
+            <h4>Db info:</h4> <br>
+            <ul>
+            {% for rcd in my_rcds %}
+                <li>{{ rcd.name }}&nbsp; : &nbsp;{{ rcd.desc }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    {% for message in messages %}
+                <li> {{ message }} </li>
+            {% endfor %}
+            <br>
+
+
+    </div>
+    </body>
+  </html>

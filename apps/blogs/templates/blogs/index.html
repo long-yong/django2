@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+      {% load static %}
+        <link rel="shortcut icon" href="{% static 'blogs/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'blogs/css/style.css' %}" >
+        <script src= "{% static 'blogs/js/me.js' %}" ></script>
+    </head>
+
+    <body>
+    <div id="container">
+    <form action="/blogs/index_post" method="post">
+
+        {% csrf_token %}  {#  Don't move me to anywhere otherwise will cause submit error#} <br>
+
+        <p id="title"> Please change app1 5 path(img/css/js/action/body) <p> <br>
+
+        <br>
+
+        <label for="name">Blog Name:</label> <br>
+
+        <input type="text" id="name" name="name" placeholder="blog name"> <br>
+
+        <br>
+
+        <label for="desc">Description:</label> <br>
+
+        <textarea id="desc" name="desc" placeholder="description"></textarea> <br>
+
+        <br> <button type="submit">Submit</button>
+    </form>
+    </div>
+    </body>
+  </html>

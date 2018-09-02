@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       {% load static %}
+        <link rel="shortcut icon" href="{% static 'app1/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'app1/css/style.css' %}" >
+        <script src= "{% static 'app1/js/me.js' %}" ></script>
+
+         <script>
+             function click_post(n1) {
+                var route = '/app1/app1_/' + n1;
+                document.getElementById('form').action = route;
+                document.getElementById('form').submit();
+            }
+        </script>
+
+    </head>
+
+    <body> <div id='container'>  <form id='form' action='' method='post'> {% csrf_token %}
+        <br><br>
+
+        <t30>Welcome:&nbsp;&nbsp;{{ request.session.name }}</t30>
+        <div class="spacem"></div>
+        <button class='inline' onclick='click_post(1)'>Cancel</button>
+
+        <t31>Title</t31>
+        <table>
+            <tr> <td>Name:</td>
+                 <td> <input type='text' id="name" name="name" value="{{ request.session.name }}"></td>
+            </tr>
+        </table>
+        <br> <button onclick='click_post(2)'>Submit</button>
+
+    </form> </div> </body>
+  </html>

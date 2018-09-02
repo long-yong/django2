@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+      <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       {% load static %}
+        <link rel="shortcut icon" href="{% static 'wall/img/0.jpg' %}" />
+        <link rel= "stylesheet" href="{% static 'wall/css/style2.css' %}" >
+        <script src= "{% static 'wall/js/me.js' %}" ></script>
+</head>
+<body>
+    <div id="container" class="slide">
+        <form action="/wall/index" method="POST">
+            {% csrf_token %}
+            Hello {{ me_name }}&nbsp;&nbsp; <button type="submit">Go Back</button>
+        </form>
+
+        <form action="/wall/board_post_mes" method="POST">
+            {% csrf_token %}
+            <h4>Post a message</h4>
+            <textarea name='mes'></textarea> <button type="submit" class="blue">Post a mssessage</button>
+        </form>
+
+        <form action="/wall/board_post_com" method="POST">
+            {% csrf_token %}
+            <p class="t1"> John 2011.07.07 </p>
+            <p class="t2"> This is my message, This is my message, This is my message, This is my message,This is my message,This is my message, </p>
+            <p class="t3"> Lisa 2011.07.07 </p>
+            <p class="t4"> This is my comment, This is my comment, This is my comment, This is my comment,This is my comment,This is my comment, </p>
+             <h4>Post a comment</h4>
+            <textarea name='1'></textarea> <button type="submit"  class="green">Post a comment</button>
+        </form>
+
+        <form action="/wall/board_post_com" method="POST">
+            {% csrf_token %}
+            <p class="t1"> John 2011.07.07 </p>
+            <p class="t2"> This is my message, This is my message, This is my message, This is my message,This is my message,This is my message, </p>
+            <p class="t3"> Lisa 2011.07.07 </p>
+            <p class="t4"> This is my comment, This is my comment, This is my comment, This is my comment,This is my comment,This is my comment, </p>
+            <h4>Post a comment</h4>
+            <textarea name='2'></textarea> <button type="submit"  class="green">Post a comment</button>
+        </form>
+    </div>
+</body>
+</html>

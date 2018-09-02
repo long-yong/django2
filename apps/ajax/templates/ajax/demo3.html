@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Ajax Demo</title>
+      {% load static %} <link rel= "stylesheet" href="{% static 'ajax/css/style.css' %}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.co..." integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <script>
+         function click_post(n1) {
+            document.getElementById('form').action = '/ajax/demo3_/' + n1;
+            document.getElementById('form').submit();
+        }
+
+        $(document).ready(function() {
+            $('#create_user_ajax_form').submit(function(e){
+                e.preventDefault();
+                $.ajax({ url: $(this).attr('action'), method: 'post', data: $(this).serialize(),
+                         success: function(serverResponse) { $('#placeholder3').html(serverResponse) }})
+            });
+        });
+      </script>
+  </head>
+
+  <body>
+
+    <form id='form' action="" method="post"> {% csrf_token %} <br>
+        <button class='row11' onclick="click_post(1)">Back</button>
+        <button class='row12' onclick="click_post(2)">Next</button>
+        <h2>Demo 3 - Ajax Form II</h2>
+    </form> <br>
+
+    <form id='create_user_ajax_form' class='ajax_form' method='post' action='/ajax/demo3_/3'>
+        {% csrf_token %}
+        First Name: <input type='text' name='first_name'/>
+        Last Name: <input type='text' name='last_name'/>
+        Email: <input type='text' name='email'/>
+        <input type='submit' value='Submit' />
+    </form>
+    <div id='placeholder3' style='margin-top:35px; border:1px solid silver; width:550px; padding:10px;'>
+        Placeholder for the Ajax Form part II
+    </div>
+
+  </body>
+</html>
